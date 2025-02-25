@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
 
 
 class Category(models.Model):
@@ -17,7 +17,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'категория'
         verbose_name_plural = 'Категории'
-        
+
     def __str__(self):
         return self.title
 
@@ -33,7 +33,7 @@ class Location(models.Model):
     class Meta:
         verbose_name = 'местоположение'
         verbose_name_plural = 'Местоположения'
-    
+
     def __str__(self):
         return self.name
 
@@ -73,7 +73,8 @@ class Post(models.Model):
 
 class Comments(models.Model):
     text = models.TextField('Текст комментария')
-    post_info = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    post_info = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name='comments')
     created_time = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
